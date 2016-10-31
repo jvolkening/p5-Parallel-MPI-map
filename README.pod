@@ -1,0 +1,63 @@
+NAME
+    Parallel::MPI::map - a parallel map using MPI
+
+SYNOPSIS
+        use Parallel::MPI::map;
+
+        # you can do this, but why?
+        my @squares = map_mpi { $_**2 } 0..10;
+
+        # this is more usual
+        my @results = map_mpi { slow_calc($_) } @inputs;
+
+DESCRIPTION
+    "Parallel::MPI::map" provides an (almost) drop-in replacement for "map"
+    which utilizes MPI to run in parallel. It uses <Parallel::MPI::Simple>
+    internally to distribute work and collect results.
+
+    Using this module, adding parallel processing to perl code can be as
+    easy as replacing the built-in "map" with the provided "map_mpi". It
+    says "almost" above because the "map_mpi" function, unlike the "map"
+    built-in, requires a code BLOCK for the first argument and won't accept
+    an EXPR.
+
+    As with other MPI-enabled programs, executables that use this module
+    must be run using "mpirun" or "mpiexec" to take advantage of
+    parallelization. If not, the code should run but only on a single
+    thread.
+
+    Many of the caveats that apply to MPI programming in general also apply
+    here. In particular, be aware that there is overhead involved in making
+    the MPI calls, and that network latency should be considered when
+    running on a cluster. Generally, this module is suitable for instances
+    where the work to be done on each input is complex or
+
+EXPORTS
+    map_mpi BLOCK LIST
+            my @results = map_mpi { slow_calc($_) } @inputs;
+
+        Emulates the built-in "map" function, but processes the input list
+        in parallel when run within an MPI environment.
+
+CAVEATS AND BUGS
+    Please reports bugs to the author.
+
+AUTHOR
+    Jeremy Volkening <jdv@base2bio.com>
+
+COPYRIGHT AND LICENSE
+    Copyright 2014-2016 Jeremy Volkening
+
+    This program is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+    Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+
