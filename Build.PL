@@ -16,7 +16,7 @@ my $builder = Module::Build->new(
         'Test::More' => 0,
     },
     requires => {
-        'Parallel::MPI::Simple' => 0.10,
+        'Parallel::MPI::Simple' => 0.101,
     },
     add_to_cleanup     => [ 'Parallel-MPI-map-*' ],
     create_makefile_pl => 'traditional',
