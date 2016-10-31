@@ -12,7 +12,7 @@ os:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libopenmpi-dev
-  - cpanm git://github.com/jvolkening/Parallel-MPI-Simple.git
+  - sudo cpanm git://github.com/jvolkening/Parallel-MPI-Simple.git
 #addons:
   #apt:
     #sources:
