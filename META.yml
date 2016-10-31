@@ -18,7 +18,7 @@ provides:
     file: lib/Parallel/MPI/map.pm
     version: '0.001'
 requires:
-  Parallel::MPI::Simple: '0.1'
+  Parallel::MPI::Simple: '0.101'
 resources:
   license: http://www.perlfoundation.org/artistic_license_2_0
 version: '0.001'
